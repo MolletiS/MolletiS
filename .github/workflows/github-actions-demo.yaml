@@ -37,4 +37,4 @@ jobs:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_TOKEN: ${{ secrets.DBX_DEV_TOKEN }}
         run: |
-          databricks jobs run-now --job-id 353347113846834
+          databricks jobs run-now --job-id 353347113846834 --version=2.1
