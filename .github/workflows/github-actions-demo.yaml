@@ -24,8 +24,13 @@ jobs:
       - name: Debug Environment Variables
         run: |
           echo "Databricks Host: $DATABRICKS_HOST"
+          if [ -z "$DATABRICKS_HOST" ]; then
+            echo "DATABRICKS_HOST is not set!"
+            exit 1
+          fi
         env:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+
 
       - name: Trigger Databricks Job
         env:
