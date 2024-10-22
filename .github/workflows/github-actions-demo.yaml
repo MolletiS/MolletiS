@@ -16,6 +16,16 @@ jobs:
       - name: Install Databricks CLI
         run: |
           pip install databricks-cli
+          
+      - name: Upgrade urllib3 and chardet
+        run: |
+          pip install --upgrade urllib3 chardet
+          
+      - name: Debug Environment Variables
+        run: |
+          echo "Databricks Host: $DATABRICKS_HOST"
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
 
       - name: Trigger Databricks Job
         env:
