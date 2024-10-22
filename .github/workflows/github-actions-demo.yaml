@@ -1,0 +1,25 @@
+name: Trigger Databricks Job
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  databricks-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Databricks CLI
+        run: |
+          pip install databricks-cli
+
+      - name: Trigger Databricks Job
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_TOKEN: ${{ secrets.DBX_DEV_TOKEN }}
+        run: |
+          databricks jobs run-now --job-id 353347113846834
